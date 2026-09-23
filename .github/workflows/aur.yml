@@ -31,7 +31,6 @@ jobs:
         with:
           pkgname: tackora-bin
           pkgbuild: aur/PKGBUILD
-          assets: aur/LICENSE
           updpkgsums: true
           test: true
           commit_username: anas1412

@@ -38,11 +38,17 @@ main() {
     fetch "Tackora_${v}_amd64.AppImage"
     mkdir -p "$dir" "$HOME/.local/share/applications"
     install -m 755 "$tmp/Tackora_${v}_amd64.AppImage" "$dir/tackora"
+    # The icon ships inside the AppImage; extracting it doesn't run the app.
+    local icon="$HOME/.local/share/icons/tackora.png"
+    mkdir -p "$(dirname "$icon")"
+    (cd "$tmp" && "$dir/tackora" --appimage-extract Tackora.png >/dev/null 2>&1) &&
+      install -m 644 "$tmp/squashfs-root/Tackora.png" "$icon" || say "Couldn't extract the icon; the launcher uses a generic one"
     cat >"$HOME/.local/share/applications/tackora.desktop" <<EOF
 [Desktop Entry]
 Name=Tackora
 Comment=A Kanban board for your coding agents
 Exec=$dir/tackora
+Icon=$icon
 Terminal=false
 Type=Application
 Categories=Development;

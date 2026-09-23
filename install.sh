@@ -81,8 +81,8 @@ EOF
   fi
 
   say "Tackora $v is installed. Open it from your app menu, or run: tackora"
-  if ! command -v claude >/dev/null && ! command -v opencode >/dev/null; then
-    say "Tackora needs Claude Code or OpenCode 2: https://anas1412.github.io/tackora/guide/install"
+  if ! command -v claude >/dev/null; then
+    say "Tackora needs Claude Code: https://anas1412.github.io/tackora/guide/install"
   fi
 }
 
